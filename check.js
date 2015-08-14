@@ -29,16 +29,13 @@ if (process.argv[2] && process.argv[2].length > 0) {
       var hadFantasyDraft = false, hadAnotherFantasyDraft = false, tradedPlayer = false, usedGodMode = false;
 
       // check for fantasy draft
-
-      // if season is 2015, and type is draft, make sure text has fantasy draft
-      // if season is not 2015, make sure draft does not have fantasy draft
       for (var ii = 0; ii < league['events'].length; ii++) {
   
-        // check for fantasy draft
+        // start looking at drafts
         if (league['events'][ii]['type'] === 'draft') {
     
           var haystack = league['events'][ii]['text'].toLowerCase();
-    
+          
           if (league['events'][ii]['season'] === 2015) {
       
             if (haystack.indexOf('fantasy draft') !== 0) {
@@ -47,12 +44,12 @@ if (process.argv[2] && process.argv[2].length > 0) {
             }
       
           } else if (league['events'][ii]['season'] !== 2015) {
-      
+            
             if (haystack.indexOf('fantasy draft') !== 0) {
               hadAnotherFantasyDraft = true;
               break;
             }
-      
+            
           }
         }
   
